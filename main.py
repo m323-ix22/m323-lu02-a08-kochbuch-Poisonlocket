@@ -1,6 +1,39 @@
 # Dein Code kommt hier hin
+"""
+mod doc
+"""
+import json
 
-if __name__ == '__main__':
-    # Beispiel für die Datenstruktur eines Rezepts
-    recipe_json = '{"title": "Spaghetti Bolognese", "ingredients": {"Spaghetti": 400, "Tomato Sauce": 300, "Minced Meat": 500}, "servings": 4}'
-    # Dein Code kommt hier hin
+
+def load_recipe(recipies: str) -> dict:
+    loaded_recipies = json.loads(recipies)
+    return loaded_recipies
+
+def adjust_recipe(recepie: dict, people:int) -> dict:
+    adjusted_ingredients = {}
+    original_servings = recepie["servings"]
+    factor = people / original_servings
+
+    for ingredient, amount in recepie["ingredients"].items():
+        adjusted_ingredients[ingredient] = amount * factor
+
+    adjusted_recipe = {
+        "title": recepie["title"],
+        "ingredients": adjusted_ingredients,
+        "servings": people
+    }
+    return adjusted_recipe
+
+
+
+
+
+
+
+
+
+
+if __name__ == "__main__":
+    pass
+
+
